@@ -50,10 +50,12 @@ const Container = styled.div`
     align-items: center;
     grid-gap: 4px;
     justify-content: start;
-    overflow: auto;
-    height: 80vh;
+    overflow-y: scroll;
+    height: 89vh;
+    min-height: 100%;
+    padding: 0 16px;
     > * {
-      margin: 2px;
+      margin: 4px 16px;
       height: 100px;
     }
 `

@@ -18,7 +18,6 @@ const LayoutFrame = styled.div`
     grid-template-rows: 100px auto;
     justify-content: center;
     align-items: center;
-    grid-gap: 8px;
     height: 100vh;
     //border: 3px solid red;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -30,7 +29,7 @@ class App extends Component {
     this.state = {
       from: 'Barcelona',
       to: 'New York City',
-      date: moment(Date.now())
+      date: moment(Date.now()).add(1, 'days')
     }
   }
   componentDidCatch(error){

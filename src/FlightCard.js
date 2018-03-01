@@ -4,12 +4,15 @@ import styled from 'styled-components'
 const Container = styled.div`
     grid-auto-flow: column;
     height: 100px;
-    width: 300px;
-    background-color: wheat;
+    width: 100%;
+    margin: 16px;
+    background-color: white;
     > * {
     height: fit-content;
       padding: 2px;
     }
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.75);
+
 `
 
 
