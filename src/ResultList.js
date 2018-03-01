@@ -7,7 +7,7 @@ import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const flightSearchQuery = gql`
-    query FlightSearch($from: String!, $to: String!, $dateVar: Date!){
+    query FlightSearch($from: String!, $to: String!, $date: Date!){
         allFlights(search: {
             from: {
                 location: $from
@@ -16,7 +16,7 @@ const flightSearchQuery = gql`
                 location: $to
             },
             date: {
-                exact: $dateVar
+                exact: $date
             }
         }){
             edges{
@@ -63,7 +63,6 @@ class ResultList extends Component {
     const {loading, error, allFlights} = this.props.data;
     if(loading) return <Spin />
     if(error) return <div>Error {error}</div>
-    console.log('data', this.props.data)
     const resultTags = allFlights.edges
         .map(e => <FlightCard key={e.node.id} flight={e.node}/>)
     return <Container>
@@ -71,12 +70,7 @@ class ResultList extends Component {
     </Container>
   }
 }
-let getDate = (date) => {
-  let r = date.format("YYYY-MM-DD")
-  console.log('F', r)
-  return r;
-}
 export default
   graphql(flightSearchQuery, {
-    options: ({from, to, date}) => ({variables: {from, to, dateVar: getDate(date)}})
+    options: ({from, to, date}) => ({variables: {from, to, date: date.format("YYYY-MM-DD")}})
   })(ResultList);

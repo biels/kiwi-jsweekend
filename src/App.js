@@ -41,7 +41,6 @@ class App extends Component {
     this.setState({...this.state, [k]: e.target.value });
   }
   handleChangeDate = (date) => {
-    console.log('SET DATE', date)
     this.setState({...this.state, date });
   }
   handleSearch = () => {
@@ -49,8 +48,6 @@ class App extends Component {
   }
   render() {
     var { flightSearchQuery } = this.props;
-    let formattedDate = this.state.date.format('YYYY-MM-DD');
-    console.log('DATE', formattedDate)
     return (<Container>
         <LayoutFrame>
           <AppHeader handleChange={this.handleChange}
