@@ -33,11 +33,11 @@ class App extends Component {
     }
   }
   componentDidCatch(error){
-    console.log('Error', error)
+    console.log('Error caught', error)
     this.setState({...this.state, error})
   }
   handleChange = (k) => (e) => {
-    this.setState({...this.state, [k]: e.target.value });
+    this.setState({...this.state, [k]: e});
   }
   handleChangeDate = (date) => {
     this.setState({...this.state, date });

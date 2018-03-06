@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import {Button, Input, DatePicker} from 'antd';
+import {Button, Input, DatePicker, AutoComplete} from 'antd';
+import {compose, graphql, Query} from 'react-apollo';
+import gql from 'graphql-tag';
+import AutocompletedLocationInput from "./AutocompletedLocationInput";
 
 
 const Container = styled.div`
@@ -22,6 +25,13 @@ const Title = styled.div`
 `
 
 class AppHeader extends Component {
+  constructor(){
+    super();
+    this.state = {
+      dataSource: []
+    }
+  }
+
   render() {
     const {from, to, date, handleChange, handleChangeDate, handleSearch} = this.props
     return <Container>
@@ -29,9 +39,10 @@ class AppHeader extends Component {
         <span>kiwi.com</span>
         <span>Flights</span>
       </Title>
-      <Input value={from} addonBefore={'From'} onPressEnter={handleSearch} onChange={handleChange('from')} />
-      <Input value={to} addonBefore={'To'} onPressEnter={handleSearch} onChange={handleChange('to')} />
-      <DatePicker showToday value={date} onChange={handleChangeDate} on />
+      <AutocompletedLocationInput tag={'From'} value={from} handleChange={handleChange}/>
+
+      <Input value={to} addonBefore={'To'} onPressEnter={handleSearch} onChange={handleChange('to')}/>
+      <DatePicker showToday value={date} onChange={handleChangeDate} on/>
       <Button type="primary" onClick={handleSearch}>Search</Button>
     </Container>
   }

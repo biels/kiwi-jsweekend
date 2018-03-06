@@ -64,7 +64,8 @@ class ResultList extends Component {
   render() {
     const {loading, error, allFlights} = this.props.data;
     if(loading) return <Spin />
-    if(error) return <div>Error {error}</div>
+    if(error) return <Container>Error: {error}</Container>
+    if(allFlights == null) return <Container>No results</Container>
     const resultTags = allFlights.edges
         .map(e => <FlightCard key={e.node.id} flight={e.node}/>)
     return <Container>
@@ -74,5 +75,5 @@ class ResultList extends Component {
 }
 export default
   graphql(flightSearchQuery, {
-    options: ({from, to, date}) => ({variables: {from, to, date: date.format("YYYY-MM-DD")}})
+    options: ({from, to, date}) => ({variables: {from, to, date: date.format("YYYY-MM-DD")}, errorPolicy: 'all'})
   })(ResultList);

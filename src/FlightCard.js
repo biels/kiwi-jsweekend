@@ -18,10 +18,11 @@ const Container = styled.div`
 
 class FlightCard extends Component {
   render() {
-    const {id, departure, arrival, to, price} = (this.props.flight || {id: 'undefined'});
+    const {id, departure, arrival, to, datetime, price} = (this.props.flight || {id: 'undefined'});
     return <Container>
       <div>From: {departure.name} ({departure.airport.name})</div>
       <div>To: {arrival.name} ({arrival.airport.name})</div>
+      <div>Datetime: {datetime}</div>
       <div>Price: {price.amount}{' '}{price.currency}</div>
     </Container>
   }
