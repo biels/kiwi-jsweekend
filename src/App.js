@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components'
-import {Button, Input, DatePicker} from 'antd';
 import * as moment from 'moment';
-import { compose, graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import AppHeader from "./AppHeader";
 import ResultList from "./ResultList";
 

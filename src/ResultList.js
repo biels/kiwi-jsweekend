@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import {Button, Input, DatePicker, Spin} from 'antd';
-import * as moment from 'moment';
+import {Spin} from 'antd';
 import FlightCard from "./FlightCard";
-import { compose, graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
 const flightSearchQuery = gql`

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import {Button, Input, DatePicker, AutoComplete} from 'antd';
-import {compose, graphql, Query} from 'react-apollo';
-import gql from 'graphql-tag';
+import {Button, DatePicker} from 'antd';
 import AutocompletedLocationInput from "./AutocompletedLocationInput";
 
 
