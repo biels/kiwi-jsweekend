@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
+import moment from "moment";
 
 const Container = styled.div`
     grid-auto-flow: column;
@@ -18,12 +19,12 @@ const Container = styled.div`
 
 class FlightCard extends Component {
   render() {
-    const {id, departure, arrival, to, datetime, price} = (this.props.flight || {id: 'undefined'});
+    const {id, departure, arrival, price} = (this.props.flight || {id: 'undefined'});
+    let dateFormat = "DD/MM/YYYY hh:mm";
     return <Container>
-      <div>From: {departure.name} ({departure.airport.name})</div>
-      <div>To: {arrival.name} ({arrival.airport.name})</div>
-      <div>Datetime: {datetime}</div>
-      <div>Price: {price.amount}{' '}{price.currency}</div>
+      <div>From: {departure.airport.name} ({moment(departure.time).format(dateFormat)}) </div>
+      <div>To: {arrival.airport.name} ({moment(arrival.time).format(dateFormat)}) </div>
+      <div>Price: {price.amount} {price.currency}</div>
     </Container>
   }
 }
