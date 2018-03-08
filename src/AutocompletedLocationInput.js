@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {compose, graphql, Query} from 'react-apollo';
+import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components'
-import {Button, Input, DatePicker, AutoComplete} from 'antd';
+import {AutoComplete, Input} from 'antd';
 import _ from 'lodash'
 
 const LocactionsSearchQuery = gql`
@@ -10,9 +10,7 @@ const LocactionsSearchQuery = gql`
         allLocations(search: $search){
             edges {
                 node {
-                    locationId
                     name
-                    type
                 }
             }
         }
@@ -33,35 +31,18 @@ class AutocompletedLocationInput extends Component {
     }
   }
 
-  handleSearch = (data, refetch) => (value) => {
-    if (data == null || data.loading || value.length < 2) {
-    } else {
-      // console.log("Refetch init")
-      // refetch({search: value})
-      // console.log("Refetch end")
-    }
-  }
-
-//this.handleSearch(data.refetch)
   shouldComponentUpdate(nextProps, nextState) {
     if ((nextProps.data || {}).loading !== (this.props.data || {}).loading) return true;
     return false;
   }
 
   render() {
-    console.log("Render")
-    let {data, tag, value, handleChange} = this.props
-    let {loading, error, allLocations, refetch} = (data || {});
-    console.log('data', data)
-    //
-    let handleSearch1 = this.handleSearch(data, refetch);
+    let {tag, value, handleChange, dataSource} = this.props
     return <Container>
-
       <AutoComplete
         style={{width: '100%'}}
-        dataSource={this.props.dataSource}
+        dataSource={dataSource}
         optionLabelProp="value"
-        onSearch={handleSearch1}
         onChange={handleChange(tag.toLowerCase())}
         value={value}
       >
@@ -72,7 +53,7 @@ class AutocompletedLocationInput extends Component {
 }
 
 export default graphql(LocactionsSearchQuery, {
-  options: ({ value }) => ({ variables: { search: value } }),
+  options: ({value}) => ({variables: {search: value}}),
   skip: ({value}) => value.length < 2,
   props: ({...props, data}) => ({
     ...props,
