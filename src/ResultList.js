@@ -55,7 +55,7 @@ const Container = styled.div`
     padding: 0 16px;
     > * {
       margin: 4px 16px;
-      height: 100px;
+      height: 80px;
     }
 `
 
