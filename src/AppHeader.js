@@ -40,8 +40,7 @@ class AppHeader extends Component {
         <span>Flights</span>
       </Title>
       <AutocompletedLocationInput tag={'From'} value={from} handleChange={handleChange}/>
-
-      <Input value={to} addonBefore={'To'} onPressEnter={handleSearch} onChange={handleChange('to')}/>
+      <AutocompletedLocationInput tag={'To'} value={to} handleChange={handleChange}/>
       <DatePicker showToday value={date} onChange={handleChangeDate} on/>
       <Button type="primary" onClick={handleSearch}>Search</Button>
     </Container>
